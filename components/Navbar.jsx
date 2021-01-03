@@ -9,7 +9,7 @@ import MenuToggleButton from './MenuToggleButton'
 const Navbar = () => {
     const [isOpen , setIsOpen] = useState(false) ;
     return (
-        <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" mb={8} p={8} bg={"black"} color={"white"}>
+        <Flex as="nav" align="center" justify="space-between" wrap="wrap" w="100%" h="100%"  p={8} bg={"black"} color={"white"}>
             <Logo />
             <MenuToggleButton isOpen={isOpen}  toggle={()=>setIsOpen(!isOpen)} />
 

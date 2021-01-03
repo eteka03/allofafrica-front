@@ -6,7 +6,7 @@ const Layout = ({children}) => {
     return (
         <Grid h="100%" boxSizing="border-box" gridGap="0px 0px" gridTemplateAreas={`"header header header header"
     "main main main main"
-    "footer footer footer footer"`} >
+    "footer footer footer footer"`} gridTemplateRows="100px auto auto" >
             <GridItem gridArea="header">
                 <Navbar />
             </GridItem>
