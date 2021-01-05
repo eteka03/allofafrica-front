@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Box, Heading } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useReducer, useRef } from "react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 import Image from "next/image";
 import CustomButton from "../components/CustomButton";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
+import RandomTitre from "../components/RandomTitre";
+import randomCountryData from "../datas/randomCountriesData";
+import ParticleDiv from "../components/ParticleDiv";
+import Zoom from "react-reveal/Zoom";
 
 const MotionHeading = motion.custom(Heading);
 
-const randomCountryData = [
-  { c: "", t: "Bienvenue" },
-  { c: "togo", t: "Woeon" },
-  { c: "ghana", t: "Akwaba" },
-  { t: "Senegal", t: "salam" },
-];
 export default function Home() {
   const [countries, setCountries] = useState(randomCountryData);
   const [country, setCountry] = useState({ t: "bienvenue" });
   const [randomN, setRandomN] = useState(0);
+
+  const { scrollYProgress } = useViewportScroll();
+
   const getRandomData = () => {
     let randomNumber = Math.floor(Math.random() * 4);
-    console.log(randomNumber);
+
     if (randomNumber === randomN) {
       getRandomData();
     } else {
@@ -29,7 +30,7 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    const id = setInterval(getRandomData, 3000);
+    const id = setInterval(getRandomData, 6000);
 
     return () => clearInterval(id);
   }, []);
@@ -51,7 +52,15 @@ export default function Home() {
         bgRepeat="no-repeat"
         position="relative"
       >
-        <MotionHeading>{country.t}</MotionHeading>
+        <RandomTitre
+          fontWeight="300"
+          fontStyle="italic"
+          right={["32", "32", "32", "32"]}
+          top="25%"
+          position="absolute"
+        >
+          - {country.t}
+        </RandomTitre>
         <MotionHeading
           animate={{
             y: 200,
@@ -64,7 +73,7 @@ export default function Home() {
           }}
           initial={{ y: 5 }}
           zIndex="2"
-          fontSize={["55px", "65px", "75px", "120px"]}
+          fontSize={["55px", "65px", "75px", "90px"]}
           letterSpacing="10px"
           textTransform="uppercase"
           color="#6f4e37"
@@ -109,6 +118,21 @@ export default function Home() {
         >
           Découvrir
         </CustomButton>
+      </Box>
+      <Box h="90vh" bgColor="black" className="container_culture">
+        <Zoom>
+          <MotionHeading>Découvrez notre cuisine</MotionHeading>
+        </Zoom>
+        <Flex
+          as="div"
+          direction={["column-reverse", "column-reverse", "row", "row"]}
+        >
+          <Box h={["auto", "auto", "100%", "100%"]}>
+            <ParticleDiv />
+            <Image width="300px" height="300px" src="/images/anana.svg" />
+          </Box>
+          <Box></Box>
+        </Flex>
       </Box>
     </Layout>
   );
