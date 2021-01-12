@@ -3,8 +3,8 @@ import { ChakraProvider, extendTheme, Global } from "@chakra-ui/react";
 
 const theme = extendTheme({
   fonts: {
-    body: `"Roboto", sans-serif`,
-    heading: `"Roboto", sans-serif`,
+    body: `"Roboto Condensed", sans-serif`,
+    heading: `"Roboto Condensed", sans-serif`,
   },
 });
 

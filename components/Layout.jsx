@@ -1,23 +1,22 @@
-import { Grid, GridItem } from '@chakra-ui/react'
-import React from 'react'
-import Navbar from './Navbar'
+
+import React, { useState } from 'react'
+import Header from './Header'
+import Main from './Main'
+
 
 const Layout = ({children}) => {
+    const [isOpen , setIsOpen] = useState(false)
+    const toggleMenu = ()=>{setIsOpen(!isOpen) ; console.log("marche")}
     return (
-        <Grid h="100%" boxSizing="border-box" gridGap="0px 0px" gridTemplateAreas={`"header header header header"
-    "main main main main"
-    "footer footer footer footer"`} gridTemplateRows="100px auto auto" >
-            <GridItem gridArea="header">
-                <Navbar />
-            </GridItem>
-            <GridItem gridArea="main">
-                {children}
-            </GridItem>
-            <GridItem gridArea="footer">
-                <footer>pied de page</footer>
-            </GridItem>
-            
-        </Grid>
+        <div className="site-layout">
+           <Header toggleMenu={toggleMenu} isOpen={isOpen}/>
+                <Main>
+                    {children}
+                </Main>
+            <footer className="site-footer">
+                pied de page
+            </footer>
+        </div>
     )
 }
 

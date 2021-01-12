@@ -1,12 +1,17 @@
 html,
 body {
+  min-height: 100%;
   padding: 0;
+  background-color: #f8f8ff;
   margin: 0;
   font-family: "Roboto", sans-serif;
 }
 
-#__next {
-  height: 100vh;
+html,
+body,
+body > div:first-child,
+div#__next > div {
+  height: 100%;
 }
 
 a {
@@ -16,4 +21,256 @@ a {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+  padding: 0;
+}
+
+.site-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #f8f8ff;
+  justify-content: space-between;
+}
+
+.site-header {
+  position: relative;
+  height: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 50px;
+}
+
+.site-main {
+  position: relative;
+  flex-grow: 1;
+}
+
+.menu-toggler {
+  visibility: hidden;
+  z-index: 6;
+}
+
+.site-footer {
+  position: relative;
+  bottom: 0;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: flex-end;
+  padding: 20px 100px;
+  transition: height 2s;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-left: 40px;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.5s;
+  text-transform: capitalize;
+}
+
+.nav-item:hover {
+  transform: scale(1.1);
+}
+
+.nav-list.active {
+  display: flex;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  left: 0;
+  z-index: 5;
+  background-color: #f8f8ff;
+  transition: 0.5s;
+}
+
+.nav-list.active .nav-item {
+  margin-bottom: 30px;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+.content.home .presentation {
+  display: flex;
+
+  justify-content: space-between;
+  width: 100%;
+}
+
+.presentation .texte-box {
+  width: 100%;
+  text-align: center;
+  padding: 5em 2em 0px;
+}
+
+.presentation .texte-box .texte {
+}
+
+.presentation .texte-titre .texte-big {
+  color: #652b19;
+  font-size: 2em;
+}
+
+.presentation .texte-description {
+  margin: 15px 0px;
+}
+
+.presentation .image-box {
+  display: flex;
+
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #fff000;
+  clip-path: circle(180px at center 200px);
+}
+
+.button.decouvrir,
+.button.page-link {
+  display: inline-block;
+  text-align: center;
+  font-weight: 900;
+  margin-top: 20px;
+  font-size: 1.2em;
+  padding: 8px 20px;
+  border-width: 2px;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #1a202c;
+  text-decoration: none;
+}
+
+.services {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  text-align: center;
+}
+
+.services.cuisine-container {
+  flex-direction: column-reverse;
+  background-color: rgba(255, 255, 255);
+}
+
+.services.hotelerie-container {
+  flex-direction: column;
+}
+
+.services.hotelerie-container .image-box img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.lien-culture {
+  font-size: 1.5em;
+  letter-spacing: 0.2em;
+  transition: 1s;
+}
+
+.lien-culture:hover {
+  transform: scale(1.2);
+}
+
+@keyframes wheel {
+  from {
+    transform: rotate(10deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#pneu_avant,
+#pneu_arriere {
+  animation: wheel 1s infinite linear;
+  transform-origin: center;
+
+  transform-box: fill-box;
+}
+
+#tsparticles {
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 62em) {
+  .presentation .image-box {
+    clip-path: circle(220px at center 250px);
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 600px;
+  }
+
+  .svg-transport {
+    width: 85%;
+  }
+
+  .resto-svg {
+    width: 500px;
+  }
+
+  .services.cuisine-container,
+  .services.hotelerie-container {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 62em) {
+  .nav-list {
+    display: none;
+  }
+  .nav-item {
+    margin-left: 0px;
+  }
+  .menu-toggler {
+    visibility: visible;
+  }
+
+  .services.cuisine-container .image-box {
+    margin-top: 40px;
+  }
+
+  .content.home .presentation {
+    flex-direction: column;
+  }
+  .svg-transport {
+    width: 60%;
+  }
+  .resto-svg {
+    width: 90vw;
+    height: 300px;
+  }
+}
+@media screen and (max-width: 48em) {
+  .svg-transport {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 30em) and (min-width: 34em) {
+  .svg-transport {
+    width: 100%;
+  }
 }

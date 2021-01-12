@@ -3,10 +3,10 @@ import Particles from 'react-particles-js'
 
 const ParticleDiv = () => {
     return (
-        <div>
+        
             <Particles
-            width="50%"
             height="100%"
+            width="100%"
     params={{
 	    "particles": {
 	        "number": {
@@ -58,7 +58,7 @@ const ParticleDiv = () => {
 	        }
 	    }
 	}} />
-        </div>
+        
     )
 }
 

@@ -7,7 +7,7 @@ import React from 'react'
 const MenuToggleButton = ({isOpen , toggle}) => {
     return (
         <Box display={{base: "block" ,  md:"none"}} onClick={toggle}>
-            {isOpen ?  <FaWindowClose color="white" fontSize="22px"/> : <GiHamburger color="white" fontSize="22px"/>}
+            {isOpen ?  <img src="https://img.icons8.com/ios/50/000000/multiply.png" alt="Close" /> : <img src="https://img.icons8.com/metro/26/000000/menu.png" alt="Menu" />}
         </Box>
     )
 }
