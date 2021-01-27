@@ -1,3 +1,4 @@
+import "swiper/swiper.scss";
 import "../styles/globals.css";
 import { ChakraProvider, extendTheme, Global } from "@chakra-ui/react";
 

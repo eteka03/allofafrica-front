@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 html,
 body {
   min-height: 100%;
@@ -193,6 +195,10 @@ a {
   transform: scale(1.2);
 }
 
+.content.services {
+  display: initial;
+}
+
 @keyframes wheel {
   from {
     transform: rotate(10deg);
@@ -215,6 +221,10 @@ a {
   width: 100%;
 }
 
+.swiper-slide {
+  width: auto;
+}
+
 @media (min-width: 62em) {
   .presentation .image-box {
     clip-path: circle(220px at center 250px);
@@ -235,6 +245,12 @@ a {
   .services.hotelerie-container {
     flex-direction: row;
   }
+}
+
+.detail.adress-link {
+  text-decoration: underline;
+  color: #0000ff;
+  cursor: pointer;
 }
 
 @media (max-width: 62em) {
