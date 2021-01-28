@@ -39,28 +39,11 @@ import {
 } from "@chakra-ui/icons";
 import SwiperCore, { Virtual, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import randomCardDatas from "../../datas/randomCardDatas";
 
 const countries_data = ["Burkina Faso", "Senegal"];
 const categories_data = ["restaurants", "hotels", "culture"];
 SwiperCore.use([Virtual, Navigation]);
-
-const fakeData = Array.from({ length: 40 })
-  .map((data, i) => {
-    let random = Math.random() * 10;
-    let dataToreturn;
-    random > 5
-      ? (dataToreturn = { cat: "restaurant", nom: `restau - ${i}` })
-      : (dataToreturn = { cat: "hotels", nom: `hotel - ${i}` });
-
-    return dataToreturn;
-  })
-  .reduce((tabByCat, obj) => {
-    const { nom } = obj;
-
-    tabByCat[obj.cat] = [...(tabByCat[obj.cat] || []), { nom }];
-
-    return tabByCat;
-  }, {});
 
 const index = () => {
   const router = useRouter();
@@ -72,14 +55,12 @@ const index = () => {
   const [selectedFilters, SetselectedFilters] = useState([]);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { name } = router.query;
-  const [fake, setFake] = useState(fakeData);
+  const [fake, setFake] = useState(randomCardDatas);
 
   const handleTag = (name) => {
     selectedFilters.includes(name)
       ? SetselectedFilters(selectedFilters.filter((f) => f !== name))
       : SetselectedFilters([...selectedFilters, name]);
-
-    console.log(selectedFilters);
   };
 
   return (
@@ -219,7 +200,9 @@ const index = () => {
                               fontSize="xs"
                               className="adress"
                             >
-                              Dakar-Senegal
+                              {Math.random() * 10 > 5
+                                ? "Dakar-Senegal"
+                                : "Ouagadougou-Burkina"}
                             </Text>
                           </Box>
 
@@ -254,7 +237,11 @@ const index = () => {
                             size="sm"
                             float="right"
                             onClick={() =>
-                              router.push(`${router.pathname}/${d.nom}`)
+                              router.push(
+                                `${router.pathname}/${encodeURIComponent(
+                                  d.nom
+                                )}?categorie=${encodeURIComponent(key)}`
+                              )
                             }
                           >
                             Voir
