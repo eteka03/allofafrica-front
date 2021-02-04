@@ -240,7 +240,10 @@ const index = () => {
                               router.push(
                                 `${router.pathname}/${encodeURIComponent(
                                   d.nom
-                                )}?categorie=${encodeURIComponent(key)}`
+                                )}?categorie=${key}`,
+                                `${router.pathname}/${encodeURIComponent(
+                                  d.nom
+                                )}`
                               )
                             }
                           >

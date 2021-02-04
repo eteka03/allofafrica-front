@@ -10,6 +10,7 @@ import {
   Tag,
   TagLeftIcon,
   TagLabel,
+  Button,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
@@ -18,6 +19,7 @@ import ImageGallery from "react-image-gallery";
 import FaLocationArrow from "@react-icons/all-files/fa/FaLocationArrow";
 import FaFacebook from "@react-icons/all-files/fa/FaFacebook";
 import FaInstagram from "@react-icons/all-files/fa/FaInstagram";
+import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
 import { MdPool } from "@react-icons/all-files/md/MdPool";
 import { MdRoomService } from "@react-icons/all-files/md/MdRoomService";
 import { FaBed } from "@react-icons/all-files/fa/FaBed";
@@ -39,6 +41,7 @@ import { GiVacuumCleaner } from "@react-icons/all-files/gi/GiVacuumCleaner";
 import CustomSlider from "../../components/CustomSlider";
 
 import fakeCardData from "../../datas/randomCardDatas";
+import Review from "../../components/Review";
 
 const Detail = () => {
   const router = useRouter();
@@ -47,9 +50,7 @@ const Detail = () => {
 
   const nbEtoile = Array.from({ length: Math.floor(Math.random() * 6) });
 
-  useEffect(() => {
-    console.log(router.asPath);
-  }, []);
+  useEffect(() => {}, []);
   const images = [
     {
       original: "https://picsum.photos/id/1018/1000/600/",
@@ -160,28 +161,35 @@ const Detail = () => {
                     eteka03.akpaki@gmail.com
                   </a>
                 </Text>
-                <HStack
-                  mt={4}
-                  spacing="18px"
+                <Stack
+                  flexDir={{ base: "column", lg: "row" }}
+                  mt={8}
+                  alignItems={{ lg: "center" }}
+                  justifyContent="space-between"
                   className="social-media container"
                 >
-                  <div>
-                    <Icon
-                      cursor="pointer"
-                      fontSize="3xl"
-                      color="#652b19"
-                      as={FaFacebook.FaFacebook}
-                    />
-                  </div>
-                  <div>
-                    <Icon
-                      cursor="pointer"
-                      fontSize="3xl"
-                      color="#652b19"
-                      as={FaInstagram.FaInstagram}
-                    />
-                  </div>
-                </HStack>
+                  <Button
+                    mt=".5rem"
+                    colorScheme="facebook"
+                    leftIcon={<FaFacebook.FaFacebook />}
+                  >
+                    Facebook
+                  </Button>
+                  <Button
+                    color="#ffffff"
+                    _hover={{
+                      bgGradient: "linear(to-l, #7928CA, #FF0080)",
+                      opacity: 0.9,
+                    }}
+                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                    leftIcon={<FaInstagram.FaInstagram />}
+                  >
+                    Instagram
+                  </Button>
+                  <Button colorScheme="twitter" leftIcon={<FaTwitter />}>
+                    Twitter
+                  </Button>
+                </Stack>
               </address>
             </Box>
             <Box
@@ -369,15 +377,14 @@ const Detail = () => {
           </Box>
         </Box>
 
-        <Box
-          mt="70px"
-          width="100%"
-          className="detail-service gallery"
-          className="same-style-container"
-        >
+        <Box mt="70px" width="100%" className="same-style-container">
           <Heading padding="0px 15px" className="" mb={3}>
             Vous aimeriez aussi
           </Heading>
+          <CustomSlider datas={fakeData[categorie]} />
+        </Box>
+        <Box mt="50px" bgColor="#ffffff" className="">
+          <Review />
         </Box>
       </Box>
     </Layout>
